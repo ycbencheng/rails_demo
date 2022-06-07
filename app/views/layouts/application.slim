@@ -12,4 +12,11 @@ html
     - flash.each do |type, msg|
       div
         = msg
+
+    - if current_user
+      = link_to 'Sign out', '/signout', data: { confirm: 'Are you sure?' }
+    - else
+      = link_to 'Sign up', '/signup'
+      = link_to 'Sign in', '/signin'
+    hr
     = yield
