@@ -1,6 +1,5 @@
 class WidgetController < ApplicationController
   before_action :set_user
-  before_action :set_widget, except: [:index, :new, :create]
 
   def index
     @widgets = @user&.widgets
@@ -22,7 +21,15 @@ class WidgetController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    correct_user = Widget.find(params[:id]).seller_id == @user.id
+
+    if !correct_user
+      flash[:notice] = "You do not have access"
+
+      redirect_to root_path
+    end
+  end
 
   def update
     if @user.widgets.update(widget_params)
@@ -37,16 +44,12 @@ class WidgetController < ApplicationController
   end
 
   def destroy
-    @widget.destroy
+    @user.widgets.find(params[:id]).destroy
 
     redirect_to widget_index_path
   end
 
   private
-
-  def set_widget
-    @widget = Widget.find(params[:id])
-  end
 
   def set_user
     @user = current_user
