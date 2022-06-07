@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title
+      | RailsDemo
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    - flash.each do |type, msg|
+      div
+        = msg
+
+    - if current_user
+      = link_to 'Sign out', '/signout', data: { confirm: 'Are you sure?' }
+    - else
+      = link_to 'Sign up', '/signup'
+      = link_to 'Sign in', '/signin'
+    hr
+    = yield
