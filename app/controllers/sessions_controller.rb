@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
    user = User.find_by(email: session_params[:email])
@@ -14,9 +13,11 @@ class SessionsController < ApplicationController
      flash[:alert] = "Invalid Email or Password"
      redirect_to '/signin'
    end
- end
+  end
 
   def destroy
+    session[:user_id] = nil
+    redirect_to '/signin'
   end
 
   private
