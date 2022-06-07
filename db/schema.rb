@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_07_023329) do
+ActiveRecord::Schema.define(version: 2022_06_07_180151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,4 +26,14 @@ ActiveRecord::Schema.define(version: 2022_06_07_023329) do
     t.float "deposit_amount", default: 0.0
   end
 
+  create_table "widgets", force: :cascade do |t|
+    t.bigint "seller_id"
+    t.text "description"
+    t.float "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["seller_id"], name: "index_widgets_on_seller_id"
+  end
+
+  add_foreign_key "widgets", "users", column: "seller_id"
 end
