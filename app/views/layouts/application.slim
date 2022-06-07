@@ -14,7 +14,8 @@ html
         = msg
 
     - if current_user
-      = link_to 'Sign out', '/signout', data: { confirm: 'Are you sure?' }
+      = link_to 'Sign out', '/signout', method: "delete", data: { confirm: 'Are you sure?' }
+      = link_to 'Account', '/account'
     - else
       = link_to 'Sign up', '/signup'
       = link_to 'Sign in', '/signin'
