@@ -1,0 +1,17 @@
+= form_for @user, url: '/account', html: { method: "patch" } do |f|
+  h2 Edit My Account
+
+  = f.label :first_name
+  = f.text_field :first_name
+  = f.label :last_name
+  = f.text_field :last_name
+  = f.label :email
+  = f.text_field :email
+  = f.label :password
+  = f.password_field :password
+
+  = submit_tag "Submit"
+
+br
+
+= link_to 'Delete Account', '/account/destroy', method: "delete", data: { confirm: 'Are you sure? There is no turning back!' }
