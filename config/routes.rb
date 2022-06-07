@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   put '/account' => 'user#update'
   delete '/account/destroy' => 'user#destroy'
 
-  root 'user#new'
+  resources :widget
+
+  root 'widget#index'
 end
