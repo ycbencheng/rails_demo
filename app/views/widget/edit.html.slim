@@ -1,2 +1,15 @@
-h1 Widget#edit
-p Find me in app/views/widget/edit.html.slim
+= form_for @widget, url: edit_widget_path, html: { method: "patch" } do |f|
+  h2 Edit #{@widget.title}
+
+  = f.label :title
+  = f.text_field :title
+  = f.label :description
+  = f.text_area :description
+  = f.label :price, 'Price $'
+  = f.number_field :price, step: 0.01
+
+  = submit_tag "Submit"
+
+br
+
+= link_to 'Delete Account', '/account/destroy', method: "delete", data: { confirm: 'Are you sure? There is no turning back!' }

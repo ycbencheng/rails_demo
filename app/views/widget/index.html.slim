@@ -1,2 +1,21 @@
-h1 Widget#index
-p Find me in app/views/widget/index.html.slim
+h2 Your widgets
+= link_to 'New widget', new_widget_path
+hr
+- if @widgets&.any?
+  table
+    - @widgets.each do |widget|
+      tr
+        th Id
+        th Title
+        th Description
+        th Price ($)
+        th Actions
+      tr
+        td = widget.id
+        td = widget.title
+        td = widget.description
+        td = widget.price
+        td = link_to 'Edit', edit_widget_path(widget)
+        td = link_to 'Delete', widget_path(widget), method: "delete", data: { confirm: 'Are you sure? There is no turning back!' }
+- else
+  p No widget available

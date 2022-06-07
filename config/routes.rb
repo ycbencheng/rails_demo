@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'home/index'
+
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
   delete '/signout' => 'sessions#destroy'
@@ -10,7 +12,7 @@ Rails.application.routes.draw do
   put '/account' => 'user#update'
   delete '/account/destroy' => 'user#destroy'
 
-  resources :widget
+  resources :widget, except: [:show], path: 'my_widgets'
 
-  root 'widget#index'
+  root 'home#index'
 end
