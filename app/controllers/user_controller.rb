@@ -10,7 +10,7 @@ class UserController < ApplicationController
 
     if user.save
       flash[:notice] = "Signup successful!"
-      redirect_to '/signup'
+      redirect_to '/signin'
     else
       flash[:alert] = "Please try again!"
       redirect_to '/signup'
