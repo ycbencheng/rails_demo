@@ -1,0 +1,14 @@
+h2 Marketplace
+- if @widgets&.any?
+  table
+    - @widgets.each do |widget|
+      tr
+        th Seller
+        th Title
+        th Description
+        th Price
+      tr
+        td = widget.user.first_name + ' ' + widget.user.last_name
+        td = widget.title
+        td = widget.description
+        td = widget.price
