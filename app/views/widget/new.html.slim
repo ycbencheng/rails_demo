@@ -1,0 +1,11 @@
+= form_for :widget, url: '/my_widgets' do |f|
+  h2 Create a new widget
+
+  = f.label :title
+  = f.text_field :title
+  = f.label :description
+  = f.text_area :description
+  = f.label :price, 'Price $'
+  = f.number_field :price, step: 0.01
+
+  = submit_tag "Create"
