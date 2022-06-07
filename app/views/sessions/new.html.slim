@@ -1,0 +1,12 @@
+= link_to 'Sign Up', signup_path
+hr
+= form_for :session, url: '/signin' do |f|
+  h2 Sign In
+
+  = f.label :email
+  = f.text_field :email
+  = f.label :password
+  = f.password_field :password
+
+  = submit_tag "Sign in"
+

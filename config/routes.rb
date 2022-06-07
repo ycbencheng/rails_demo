@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  get '/signin' => 'sessions#new'
+  post '/signin' => 'sessions#create'
+  get '/signout' => 'sessions#destroy'
+
   get '/signup' => 'user#new'
   post '/users' => 'user#create'
 
-  get '/' => 'user#new'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root 'user#new'
 end
