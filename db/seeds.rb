@@ -52,8 +52,7 @@ def create_users
     User.create(first_name: FFaker::Name.first_name,
                 last_name: FFaker::Name.last_name,
                 email: FFaker::Internet.email,
-                password: 'password',
-                role: rand(0..1))
+                password: 'password')
   end
 
   puts '-----------------'
