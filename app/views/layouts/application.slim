@@ -17,6 +17,7 @@ html
       = link_to 'Home', root_path
       = link_to 'Account', '/account'
       = link_to 'My Widgets', widget_index_path
+      = link_to 'Previous Transactions', transactions_path
       = link_to 'Sign out', '/signout', method: "delete", data: { confirm: 'Are you sure?' }
     - else
       = link_to 'Sign up', '/signup'
