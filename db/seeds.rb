@@ -65,8 +65,8 @@ def create_widgets
 
   users.each do |user|
     user.widgets.create(title: FFaker::Product.product_name,
-                          description: FFaker::FreedomIpsum.paragraph,
-                          price: (FFaker::Number.decimal * 4.5).round(2))
+                        description: FFaker::FreedomIpsum.paragraph,
+                        price: (FFaker::Number.decimal * 4.5).round(2))
   end
 
   puts '-----------------'
