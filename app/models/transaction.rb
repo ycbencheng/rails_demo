@@ -5,6 +5,8 @@ class Transaction < ApplicationRecord
   belongs_to :seller, class_name: 'User', foreign_key: :seller_id
   belongs_to :widget
 
+  validates :amount, presence: :true
+
   def self.widget_to_transaction(widget, buyer)
     { seller_id: widget.seller_id,
       buyer_id: buyer.id,
