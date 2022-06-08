@@ -11,7 +11,15 @@
   = f.password_field :password
 
   = submit_tag "Submit"
+hr
 
-br
+h3 Current fund: $#{@user.deposit_amount}
+= form_for @user, url: '/account/fund', html: { method: "patch" } do |f|
+  = f.label :deposit_amount, 'Top up my fund $ '
+  = f.number_field :deposit_amount, step: 1, default_value: 0, min: 1
+
+  = submit_tag "Submit"
+
+hr
 
 = link_to 'Delete Account', '/account/destroy', method: "delete", data: { confirm: 'Are you sure? There is no turning back!' }
