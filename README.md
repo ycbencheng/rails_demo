@@ -11,7 +11,8 @@ The project represent a mock marketplace allowing users to create widgets to buy
 - [x] Visitor is able to create a new account (user)
 - [x] Each purchase transaction will update the seller and buyer's funding
 - [x] Transaction will not go through if the amount is higher than the user's current deposit amount
-- [] Each transaction includes the cost 5% feed
+- [x] Each transaction includes the cost 5% feed
+- [x] Record each transaction fee as revenue in the marketplace table
 
 Users can ...
 
