@@ -17,8 +17,6 @@ class TransactionController < ApplicationController
     if not_user_widget && check_funding && transaction.save
       flash[:notice] = "Purchase successful!"
 
-      update_users_deposit(widget)
-
       redirect_to transactions_path
     else
       msg = not_user_widget ? "Please try again!" : "Can not purchase your own widget!"
@@ -32,14 +30,5 @@ class TransactionController < ApplicationController
 
   def widget_params
     params.require(:widget).permit(:id)
-  end
-
-  def update_users_deposit(widget)
-    # add money to seller
-    seller = User.find(widget.seller_id)
-    seller.update(deposit_amount: seller.deposit_amount + widget.price)
-
-    # subtract money from buyer
-    current_user.update(deposit_amount: current_user.deposit_amount - widget.price)
   end
 end
