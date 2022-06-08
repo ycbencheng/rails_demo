@@ -1,5 +1,3 @@
-
-
 FactoryBot.define do
 
   factory :widget do
