@@ -1,11 +1,13 @@
 class Transaction < ApplicationRecord
-  after_create :update_users_deposit
+  after_create :cal_financials
 
   belongs_to :buyer, class_name: 'User', foreign_key: :buyer_id
   belongs_to :seller, class_name: 'User', foreign_key: :seller_id
   belongs_to :widget
 
   validates :amount, presence: :true
+
+  FEE = 0.05
 
   def self.widget_to_transaction(widget, buyer)
     { seller_id: widget.seller_id,
@@ -14,11 +16,25 @@ class Transaction < ApplicationRecord
       amount: widget.price }
   end
 
-  def update_users_deposit
-    # add money to seller
-    seller.update(deposit_amount: seller.deposit_amount + amount)
+  def cal_financials
+    seller_income
+    buyer_expense
+    marketplace_revenue
+  end
 
-    # subtract money from buyer
-    buyer.update(deposit_amount: buyer.deposit_amount - amount)
+  def seller_income
+    sub_total = (seller.deposit_amount + amount)
+    total = sub_total - (sub_total * FEE)
+    seller.update(deposit_amount: total)
+  end
+
+  def buyer_expense
+    sub_total = (buyer.deposit_amount - amount)
+    total = sub_total + (sub_total * FEE)
+    buyer.update(deposit_amount: total)
+  end
+
+  def marketplace_revenue
+    Marketplace.create(transaction_id: id, revenue: amount * FEE)
   end
 end

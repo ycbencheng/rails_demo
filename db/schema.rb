@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_08_144616) do
+ActiveRecord::Schema.define(version: 2022_06_08_204746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "marketplaces", force: :cascade do |t|
+    t.bigint "transaction_id"
+    t.float "revenue", default: 0.0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["transaction_id"], name: "index_marketplaces_on_transaction_id"
+  end
 
   create_table "transactions", force: :cascade do |t|
     t.bigint "seller_id"

@@ -52,6 +52,7 @@ def create_users
     User.create(first_name: FFaker::Name.first_name,
                 last_name: FFaker::Name.last_name,
                 email: FFaker::Internet.email,
+                deposit_amount: rand(100..1000),
                 password: 'password')
   end
 
