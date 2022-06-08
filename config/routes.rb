@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   patch '/account' => 'user#update'
   put '/account' => 'user#update'
   delete '/account/destroy' => 'user#destroy'
+  patch '/account/fund' => 'user#update_deposit'
 
   resources :widget, except: [:show], path: 'my_widgets'
 

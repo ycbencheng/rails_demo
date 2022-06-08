@@ -7,4 +7,8 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, presence: true
   validates :email, presence: true, uniqueness: true, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: 'Invalid email' }
+
+  def self.cal_new_deposit(user, new_fund)
+    { deposit_amount: user.deposit_amount + new_fund[:deposit_amount].to_f }
+  end
 end

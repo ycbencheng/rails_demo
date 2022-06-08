@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_action :set_user, only: %i[edit update destroy]
+  before_action :set_user, only: %i[edit update destroy update_deposit]
 
   skip_before_action :authenticate_user, only: [:new, :create]
 
@@ -31,6 +31,20 @@ class UserController < ApplicationController
     end
   end
 
+  def update_deposit
+    fund = User.cal_new_deposit(@user, deposit_params)
+
+    if @user.update(fund)
+      flash[:notice] = "Update successful!"
+
+      redirect_to '/account'
+    else
+      flash[:alert] = "Please try again!"
+
+      redirect_to '/account'
+    end
+  end
+
   def destroy
     session[:user_id] = nil
     @user.destroy
@@ -45,6 +59,13 @@ class UserController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password)
+    params.require(:user).permit(:first_name,
+                                 :last_name,
+                                 :email,
+                                 :password)
+  end
+
+  def deposit_params
+    params.require(:user).permit(:deposit_amount)
   end
 end
