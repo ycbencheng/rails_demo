@@ -7,12 +7,17 @@ class TransactionController < ApplicationController
   def create
     widget = Widget.find(widget_params[:id])
     widget_to_transaction = Transaction.widget_to_transaction(widget, current_user)
-    transaction = Transaction.new(widget_to_transaction)
 
     not_user_widget = widget.seller_id != current_user.id
 
-    if not_user_widget && transaction.save
+    check_funding = User.check_funding(current_user, widget.price)
+
+    transaction = Transaction.new(widget_to_transaction)
+
+    if not_user_widget && check_funding && transaction.save
       flash[:notice] = "Purchase successful!"
+
+      update_users_deposit(widget)
 
       redirect_to transactions_path
     else
@@ -27,5 +32,14 @@ class TransactionController < ApplicationController
 
   def widget_params
     params.require(:widget).permit(:id)
+  end
+
+  def update_users_deposit(widget)
+    # add money to seller
+    seller = User.find(widget.seller_id)
+    seller.update(deposit_amount: seller.deposit_amount + widget.price)
+
+    # subtract money from buyer
+    current_user.update(deposit_amount: current_user.deposit_amount - widget.price)
   end
 end
