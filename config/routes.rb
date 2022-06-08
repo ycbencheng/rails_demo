@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/transactions' => 'transaction#index'
   get 'home/index'
 
   get '/signin' => 'sessions#new'

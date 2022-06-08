@@ -1,0 +1,42 @@
+h2 Your previous transactions
+hr
+
+h3 Purchase transactions
+- if @buyer_transactions&.any?
+  table
+    tr
+      th Id
+      th Product Title
+      th Amount ($)
+      th Seller
+      th Email
+    - @buyer_transactions.each do |transaction|
+      tr
+        td = transaction.id
+        td = transaction.widget.title
+        td = transaction.amount
+        td = transaction.seller.first_name + ' ' + transaction.seller.last_name
+        td = transaction.seller.email
+- else
+  p No purchase transactions available
+
+hr
+
+h3 Selling transactions
+- if @seller_transactions&.any?
+  table
+    tr
+      th Id
+      th Product Title
+      th Amount ($)
+      th Buyer
+      th Email
+    - @seller_transactions.each do |transaction|
+      tr
+        td = transaction.id
+        td = transaction.widget.title
+        td = transaction.amount
+        td = transaction.buyer.first_name + ' ' + transaction.buyer.last_name
+        td = transaction.buyer.email
+- else
+  p No sales transactions available
