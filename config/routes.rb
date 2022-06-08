@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get '/transactions' => 'transaction#index'
-  get 'home/index'
-
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
   delete '/signout' => 'sessions#destroy'
@@ -15,6 +12,11 @@ Rails.application.routes.draw do
   patch '/account/fund' => 'user#update_deposit'
 
   resources :widget, except: [:show], path: 'my_widgets'
+
+  get '/transactions' => 'transaction#index'
+  post '/purchase' => 'transaction#create'
+
+  get 'home/index'
 
   root 'home#index'
 end
