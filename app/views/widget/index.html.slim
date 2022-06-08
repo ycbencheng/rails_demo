@@ -3,13 +3,13 @@ h2 Your widgets
 hr
 - if @widgets&.any?
   table
+    tr
+      th Id
+      th Title
+      th Description
+      th Price ($)
+      th Actions
     - @widgets.each do |widget|
-      tr
-        th Id
-        th Title
-        th Description
-        th Price ($)
-        th Actions
       tr
         td = widget.id
         td = widget.title
