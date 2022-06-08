@@ -2,7 +2,7 @@
 
 ## Description
 
-This is to show case my skills and experience as a developer. I created this project with Ruby on Rails 6 and using Slim to display data on the front end. Due to the time contraint, I'm able to complete the objectives below with minimal tests.
+This is to show case my skills and experience as a developer. I created this project with Ruby on Rails 6 and using Slim to display data on the front end. I'm able to complete the objectives below. But due to the time contraint, I was only able to complete minimal tests and many places needed to be refactor such as the Transcation model.
 
 The project represent a mock marketplace allowing users to create widgets to buy and sell.
 
