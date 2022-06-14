@@ -6,10 +6,6 @@ This is to show case my skills and experience as a developer. I created this pro
 
 The project represent a mock marketplace allowing users to create widgets to buy and sell.
 
-Link to the requirement https://drive.google.com/file/d/1TNslZl23uK96vOUWE07UShTmWI_Ix8Hb/view?usp=sharing
-
-Link to the project management board https://www.notion.so/ycbencheng/Citybase-s-Assignment-eee850ef042a4a269f4a733047f95c7d
-
 ## Objectives
 
 - [x] Visitor is able to create a new account (user)
