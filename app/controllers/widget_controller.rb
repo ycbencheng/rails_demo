@@ -44,7 +44,7 @@ class WidgetController < ApplicationController
   end
 
   def destroy
-    @user.widgets.find(params[:id]).destroy
+    @user.widgets.find(widget_params[:id]).destroy
 
     redirect_to widget_index_path
   end
@@ -56,6 +56,6 @@ class WidgetController < ApplicationController
   end
 
   def widget_params
-    params.require(:widget).permit(:title, :description, :price)
+    params.require(:widget).permit(:id,:title, :description, :price)
   end
 end
