@@ -1,38 +1,41 @@
 require "test_helper"
 
 class WidgetControllerTest < ActionDispatch::IntegrationTest
+  def setup
+    user = FactoryBot.create(:user)
+    signin_as(user)
+
+    widget = FactoryBot.create(:widget)
+    @widget = {widget: {id: widget.id,
+                        seller_id: user.id,
+                        title: widget.title,
+                        description: widget.description,
+                        price: widget.price}}
+  end
+
   test "should get index" do
     get widget_index_url
     assert_response :success
   end
 
-  test "should get show" do
-    get widget_show_url
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get widget_edit_url
-    assert_response :success
-  end
-
-  test "should get update" do
-    get widget_update_url
-    assert_response :success
-  end
-
   test "should get new" do
-    get widget_new_url
+    get new_widget_url
     assert_response :success
   end
 
   test "should get create" do
-    get widget_create_url
+    post widget_index_url(@widget)
     assert_response :success
   end
 
-  test "should get destroy" do
-    get widget_destroy_url
-    assert_response :success
+  test "should get edit if user matches" do
+    get edit_widget_path(@widget[:widget][:id])
+    assert_response :redirect
+  end
+
+  test "should not get edit if user does not match" do
+    @widget[:widget][:seller_id] = nil
+    get edit_widget_path(@widget[:widget][:id])
+    assert_response :redirect
   end
 end
